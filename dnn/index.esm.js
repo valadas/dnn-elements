@@ -1,2 +1,47 @@
-export{D as Debounce}from"./p-0e94f5ee.js";class t{constructor(t){this.getServiceRoot=t=>{var e=window.top.dnn.getVar("sf_siteRoot","/");e+="API/"+t+"/";return e};this.getTabId=()=>{var t=window.top.dnn.getVar("sf_tabId","-1");return parseInt(t)};this.getModuleId=()=>this._moduleId;this.getAntiForgeryValue=()=>{const t=document.querySelector("input[name=__RequestVerificationToken]");if(t!=null){return t.value}else{return null}};this.getModuleHeaders=()=>{var t=new Headers;if(this.getTabId()>-1){t.append("ModuleId",this._moduleId.toString());t.append("TabId",this.getTabId().toString())}const e=this.getAntiForgeryValue();if(e!=null){t.append("RequestVerificationToken",e)}return t};this._moduleId=t}}export{t as DnnServicesFramework};
+export { D as Debounce } from './debounce-06f55268.js';
+
+class DnnServicesFramework {
+  /**
+   * Initializes the serivces framework
+   */
+  constructor(moduleId) {
+    this.getServiceRoot = (moduleName) => {
+      var serviceRoot = window.top.dnn.getVar("sf_siteRoot", "/");
+      serviceRoot += "API/" + moduleName + "/";
+      return serviceRoot;
+    };
+    this.getTabId = () => {
+      var tabId = window.top.dnn.getVar("sf_tabId", "-1");
+      return parseInt(tabId);
+    };
+    this.getModuleId = () => {
+      return this._moduleId;
+    };
+    this.getAntiForgeryValue = () => {
+      const el = document.querySelector("input[name=__RequestVerificationToken]");
+      if (el != null) {
+        return el.value;
+      }
+      else {
+        return null;
+      }
+    };
+    this.getModuleHeaders = () => {
+      var headers = new Headers();
+      if (this.getTabId() > -1) {
+        headers.append("ModuleId", this._moduleId.toString());
+        headers.append("TabId", this.getTabId().toString());
+      }
+      const afValue = this.getAntiForgeryValue();
+      if (afValue != null) {
+        headers.append("RequestVerificationToken", afValue);
+      }
+      return headers;
+    };
+    this._moduleId = moduleId;
+  }
+}
+
+export { DnnServicesFramework };
+
 //# sourceMappingURL=index.esm.js.map
