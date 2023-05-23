@@ -1,0 +1,24 @@
+:host {
+  display: block;
+
+  /**
+  * @prop --foreground-color: The foreground color of the component.
+  * @prop --background-color: The background color of the component.
+  */
+  --foreground-color: var(--dnn-color-primary, blue);
+  --background-color: var(--dnn-color-primary-contrast, white);
+}
+
+.container{
+  border: 1px solid var(--foreground-color);
+  background-color: var(--background-color);
+  border-radius: var(--dnn-controls-radius);
+  position: relative;
+  .progress{
+    transition: all 300ms;
+    background-color: var(--foreground-color);
+    border-radius: var(--dnn-controls-radius);
+    text-align: center;
+  }
+}
+
