@@ -49,11 +49,11 @@ export class DnnRichtext {
     this.editor = Jodit.make(this.textArea, mergedOptions);
     this.editor.value = decodeHtml(this.value);
     this.setFormValue();
-    this.editor.e.on('change', newValue => {
-      this.valueChange.emit(newValue);
+    this.editor.e.on('blur', () => {
+      this.valueChange.emit(this.editor.value);
       this.setFormValue();
     });
-    this.editor.e.on('input', newValue => this.valueInput.emit(newValue));
+    this.editor.e.on('input', () => this.valueInput.emit(this.editor.value));
   }
 
   // eslint-disable-next-line @stencil-community/own-methods-must-be-private
